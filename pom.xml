@@ -11,6 +11,9 @@
     <modules>
         <module>de.kagegan.remotesessionservice.entities</module>
         <module>de.kagegan.remotesessionservice.backend</module>
+        <module>de.kagegan.remotesessionservice.client</module>
+        <module>de.kagegan.remotesessionservice.frontend</module>
+        <module>de.kaggegan.remotesessionservice.logservice</module>
     </modules>
 
     <dependencies>
