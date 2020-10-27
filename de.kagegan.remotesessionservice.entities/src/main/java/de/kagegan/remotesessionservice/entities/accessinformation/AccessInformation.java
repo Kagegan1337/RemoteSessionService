@@ -37,14 +37,14 @@ public class AccessInformation {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Client client;
 
-    private DateTime creationTime;
+    private String creationTime;
 
-    private DateTime expirationTime;
+    private String expirationTime;
 
     @PrePersist
     private void createTime() {
-        creationTime = DateTime.now();
-        expirationTime = creationTime.plusHours(12);
+        creationTime = DateTime.now().toString();
+        expirationTime = DateTime.parse(creationTime).plusHours(12).toString();
     }
 
     public String getIpAddress() {
@@ -63,19 +63,19 @@ public class AccessInformation {
         this.ipType = ipType;
     }
 
-    public DateTime getCreationTime() {
+    public String getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(DateTime creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 
-    public DateTime getExpirationTime() {
+    public String getExpirationTime() {
         return expirationTime;
     }
 
-    public void setExpirationTime(DateTime expirationTime) {
+    public void setExpirationTime(String expirationTime) {
         this.expirationTime = expirationTime;
     }
 

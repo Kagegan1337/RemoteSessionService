@@ -1,18 +1,16 @@
 package de.kagegan.remotesessionservice.backend.configuration;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
+
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -25,9 +23,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "de.kagegan.remotesessionservice.backend.repository")
 @EnableTransactionManagement
-@PropertySources(@PropertySource(value = {"classpath:application.properties"}))
+@PropertySources({@PropertySource(value = {"classpath:application.properties"})})
 public class HibernateConfiguration {
 
     private Environment environment;
@@ -60,7 +57,7 @@ public class HibernateConfiguration {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driver-class-name"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("jbdc.driverClassName"));
         dataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
         dataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
         dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));

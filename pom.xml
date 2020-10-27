@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>de.kagegan</groupId>
     <artifactId>remotesessionservice</artifactId>
     <packaging>pom</packaging>
@@ -11,9 +10,7 @@
     <modules>
         <module>de.kagegan.remotesessionservice.entities</module>
         <module>de.kagegan.remotesessionservice.backend</module>
-        <module>de.kagegan.remotesessionservice.client</module>
         <module>de.kagegan.remotesessionservice.frontend</module>
-        <module>de.kaggegan.remotesessionservice.logservice</module>
     </modules>
 
     <dependencies>
@@ -30,17 +27,17 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>5.1.6.RELEASE</version>
+            <version>5.2.8.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>5.1.6.RELEASE</version>
+            <version>5.2.8.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>2.1.10.RELEASE</version>
+            <version>2.3.3.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -58,11 +55,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.1.Final</version>
         </dependency>
-        <dependency>
-            <groupId>org.jadira.usertype</groupId>
-            <artifactId>usertype.core</artifactId>
-            <version>6.0.1.GA</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -77,5 +69,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

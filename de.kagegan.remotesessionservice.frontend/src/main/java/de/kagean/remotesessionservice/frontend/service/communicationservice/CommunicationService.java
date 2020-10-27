@@ -54,8 +54,7 @@ public class CommunicationService {
     public List<Client> getAllClients() throws IOException {
         HttpGet get = new HttpGet(backendConfiguration.getBackEndUrl() + "/client/all");
         CloseableHttpResponse response = httpClient.execute(get);
-        List<Client> result =  Arrays.asList(new Gson().fromJson(new InputStreamReader(response.getEntity().getContent()),Client[].class));
-        return result;
+        return Arrays.asList(new Gson().fromJson(new InputStreamReader(response.getEntity().getContent()),Client[].class));
     }
 
 }

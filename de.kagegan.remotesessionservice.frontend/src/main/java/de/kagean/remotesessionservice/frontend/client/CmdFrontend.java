@@ -1,16 +1,14 @@
 package de.kagean.remotesessionservice.frontend.client;
 
+import de.kagean.remotesessionservice.frontend.service.IpInformationService;
 import de.kagean.remotesessionservice.frontend.service.communicationservice.CommunicationService;
 import de.kagean.remotesessionservice.frontend.service.configuration.CmdConfiguration;
-import de.kagegan.remotesessionservice.entities.accessinformation.AccessInformation;
-import de.kagegan.remotesessionservice.entities.client.Client;
-
-import java.io.IOException;
 
 public class CmdFrontend implements Frontend {
 
     private CmdConfiguration cmdConfiguration;
     private CommunicationService communicationService;
+    private IpInformationService ipInformationService;
 
     public CmdFrontend() {
     }
@@ -19,27 +17,24 @@ public class CmdFrontend implements Frontend {
     public void init() {
         initConfiguration();
         initCommunicationService();
-        try {
-            for (Client c : communicationService.getAllClients()) {
-                System.out.println(c.getClientName());
-                for (AccessInformation i : c.getAccessInformation()) {
-                    System.out.println("\t" + i.getCreationTime());
-                    System.out.println("\t" + i.getExpirationTime());
-                    System.out.println("\t" + i.getIpAddress());
-                    System.out.println("\t" + i.getIpType());
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        initIpService();
+        initCommandLine();
+    }
+
+    private void initConfiguration() {
+        cmdConfiguration = new CmdConfiguration();
+        cmdConfiguration.load();
     }
 
     private void initCommunicationService() {
         communicationService = new CommunicationService(cmdConfiguration);
     }
 
-    private void initConfiguration() {
-        cmdConfiguration = new CmdConfiguration();
-        cmdConfiguration.load();
+    private void initIpService() {
+        ipInformationService = new IpInformationService(communicationService);
+    }
+
+    private void initCommandLine() {
+
     }
 }
