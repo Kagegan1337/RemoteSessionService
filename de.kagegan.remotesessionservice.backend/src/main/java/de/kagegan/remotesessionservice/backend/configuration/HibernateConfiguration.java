@@ -1,9 +1,11 @@
 package de.kagegan.remotesessionservice.backend.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
@@ -55,9 +57,12 @@ public class HibernateConfiguration {
     }
 
     @Bean
+    @ConfigurationProperties(prefix = "datasource")
+    @Primary
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jbdc.driverClassName"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driver-class-name"));
+//        dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
         dataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
         dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
