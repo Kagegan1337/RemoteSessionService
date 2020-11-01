@@ -11,7 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories("de.kagegan.remotesessionservice.backend.repository")
-@ComponentScan({"de.kagegan.remotesessionservice.backend.repository","de.kagegan.remotesessionservice.backend.controller"})
+@ComponentScan({"de.kagegan.remotesessionservice.backend.repository",
+        "de.kagegan.remotesessionservice.backend.controller", "de.kagegan.remotesessionservice.backend.configuration"})
 @EntityScan("de.kagegan.remotesessionservice.entities")
 public class Application extends SpringBootServletInitializer {
 
